@@ -14,7 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Login_01_ValidateLoginForm {
+public class Login_01_RepeatYourSelf {
 
 	WebDriver driver;
 	By emailTextBoxBy = By.xpath("//input[@id='usernameOrEmail']");
