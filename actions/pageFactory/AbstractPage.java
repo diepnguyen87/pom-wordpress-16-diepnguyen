@@ -1,4 +1,4 @@
-package commons;
+package pageFactory;
 
 import java.util.List;
 import java.util.Set;
@@ -101,12 +101,11 @@ public abstract class AbstractPage {
 		return driver.findElements(byXpath(driver, xpathLocator));
 	}
 
-	public void clickToElement(WebDriver driver, String xpathLocator) {
-		findElement(driver, xpathLocator).click();
+	public void clickToElement(WebDriver driver, WebElement element) {
+		element.click();
 	}
 
-	public void sendKeyToElement(WebDriver driver, String xpathLocator, String value) {
-		element = findElement(driver, xpathLocator);
+	public void sendKeyToElement(WebDriver driver, WebElement element, String value) {
 		element.clear();
 		element.sendKeys(value);
 	}
@@ -142,61 +141,59 @@ public abstract class AbstractPage {
 		findElement(driver, xpathLocator).getAttribute(attributeName);
 	}
 
-	public String getElementText(WebDriver driver, String xpathLocator) {
-		return findElement(driver, xpathLocator).getText().trim();
+	public String getElementText(WebDriver driver, WebElement element) {
+		return element.getText().trim();
 	}
 
 	public int countElementNumber(WebDriver driver, String xpathLocator) {
 		return findElements(driver, xpathLocator).size();
 	}
 
-	public void checkTheCheckbox(WebDriver driver, String xpathLocator) {
-		element = findElement(driver, xpathLocator);
+	public void checkTheCheckbox(WebDriver driver, WebElement element) {
 		if (!element.isSelected()) {
 			element.click();
 		}
 	}
 
-	public void uncheckTheCheckbox(WebDriver driver, String xpathLocator) {
-		element = findElement(driver, xpathLocator);
+	public void uncheckTheCheckbox(WebDriver driver, WebElement element) {
 		if (element.isSelected()) {
 			element.click();
 		}
 	}
 
-	public boolean isControlDisplayed(WebDriver driver, String xpathLocator) {
-		return findElement(driver, xpathLocator).isDisplayed();
+	public boolean isControlDisplayed(WebDriver driver, WebElement element) {
+		return element.isDisplayed();
 	}
 
-	public boolean isControlSelected(WebDriver driver, String xpathLocator) {
-		return findElement(driver, xpathLocator).isSelected();
+	public boolean isControlSelected(WebDriver driver, WebElement element) {
+		return element.isSelected();
 	}
 
-	public boolean isControlEnabled(WebDriver driver, String xpathLocator) {
-		return findElement(driver, xpathLocator).isEnabled();
+	public boolean isControlEnabled(WebDriver driver, WebElement element) {
+		return element.isEnabled();
 	}
 
-	public void switchToFrameOrIframe(WebDriver driver, String xpathLocator) {
-		driver.switchTo().frame(findElement(driver, xpathLocator));
+	public void switchToFrameOrIframe(WebDriver driver, WebElement element) {
+		driver.switchTo().frame(element);
 	}
 
 	public void switchToDefaulContent(WebDriver driver) {
 		driver.switchTo().defaultContent();
 	}
 
-	public void doubleClickToEclement(WebDriver driver, String xpathLocator) {
+	public void doubleClickToEclement(WebDriver driver, WebElement element) {
 		action = new Actions(driver);
-		action.doubleClick(findElement(driver, xpathLocator)).perform();
+		action.doubleClick(element).perform();
 	}
 
-	public void hoverMouseToElement(WebDriver driver, String xpathLocator) {
+	public void hoverMouseToElement(WebDriver driver, WebElement element) {
 		action = new Actions(driver);
-		action.moveToElement(findElement(driver, xpathLocator)).perform();
+		action.moveToElement(element).perform();
 	}
 
-	public void rightClick(WebDriver driver, String xpathLocator) {
+	public void rightClick(WebDriver driver, WebElement element) {
 		action = new Actions(driver);
-		action.contextClick(findElement(driver, xpathLocator)).perform();
+		action.contextClick(element).perform();
 	}
 
 	public void dragAndDrop(WebDriver driver, String sourceXpath, String targetXpath) {
@@ -204,9 +201,9 @@ public abstract class AbstractPage {
 		action.dragAndDrop(findElement(driver, sourceXpath), findElement(driver, targetXpath)).perform();
 	}
 
-	public void sendKeyboardToElement(WebDriver driver, String xpathLocator, Keys key) {
+	public void sendKeyboardToElement(WebDriver driver, WebElement element, Keys key) {
 		action = new Actions(driver);
-		action.sendKeys(findElement(driver, xpathLocator), key).perform();
+		action.sendKeys(element, key).perform();
 	}
 
 	public Object executeJavaScriptToBrowser(WebDriver driver, String javaSript) {
@@ -225,24 +222,21 @@ public abstract class AbstractPage {
 		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	}
 
-	public void scrollToElement(WebDriver driver, String locator) {
+	public void scrollToElement(WebDriver driver, WebElement element) {
 		jsExecutor = (JavascriptExecutor) driver;
-		element = driver.findElement(By.xpath(locator));
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
-	public void highlightElement(WebDriver driver, String locator) {
+	public void highlightElement(WebDriver driver, WebElement element) {
 		jsExecutor = (JavascriptExecutor) driver;
-		element = driver.findElement(By.xpath(locator));
 		String originalStyle = element.getAttribute("style");
 		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 5px solid red; border-style: dashed;");
 		sleepInSecond(2);
 		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 	}
 
-	public void removeAttributeInDOM(WebDriver driver, String locator, String removedAttributeName) {
+	public void removeAttributeInDOM(WebDriver driver, WebElement element, String removedAttributeName) {
 		jsExecutor = (JavascriptExecutor) driver;
-		element = driver.findElement(By.xpath(locator));
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + removedAttributeName + "');", element);
 	}
 
@@ -251,21 +245,18 @@ public abstract class AbstractPage {
 		jsExecutor.executeScript("window.location = '" + url + "'");
 	}
 
-	public void clickToElementByJS(WebDriver driver, String locator) {
+	public void clickToElementByJS(WebDriver driver, WebElement element) {
 		jsExecutor = (JavascriptExecutor) driver;
-		element = driver.findElement(By.xpath(locator));
 		jsExecutor.executeScript("arguments[0].click();", element);
 	}
 
-	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
+	public void sendkeyToElementByJS(WebDriver driver, WebElement element, String value) {
 		jsExecutor = (JavascriptExecutor) driver;
-		element = driver.findElement(By.xpath(locator));
 		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", element);
 	}
 
-	public boolean isImageLoaded(WebDriver driver, String xpathLocator) {
+	public boolean isImageLoaded(WebDriver driver, WebElement element) {
 		jsExecutor = (JavascriptExecutor) driver;
-		element = findElement(driver, xpathLocator);
 		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete &&" + "typeOf arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0", element);
 		if (status) {
 			return true;
@@ -278,14 +269,14 @@ public abstract class AbstractPage {
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
-	public void waitForElementVisible(WebDriver driver, String xpathLocator) {
+	public void waitForElementVisible(WebDriver driver, WebElement element) {
 		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(driver, xpathLocator)));
+		explicitWait.until(ExpectedConditions.visibilityOf(element));
 	}
 
-	public void waitForElementClickable(WebDriver driver, String xpathLocator) {
+	public void waitForElementClickable(WebDriver driver, WebElement element) {
 		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(driver, xpathLocator)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String xpathLocator) {
@@ -307,7 +298,6 @@ public abstract class AbstractPage {
 	}
 
 	private WebDriverWait explicitWait;
-	private WebElement element;
 	private JavascriptExecutor jsExecutor;
 	private Actions action;
 	private long longSecondTimeOut = 30;

@@ -8,13 +8,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import net.jcip.annotations.ThreadSafe;
 import pageObjects.bankGuru.LoginPageObject;
 import pageObjects.bankGuru.ManagePageObject;
 import pageObjects.bankGuru.RegisterPageObject;
 
-public class Login_01_RegisterAndLogin {
+public class Login_01_PageObjectPattern {
 
 	private WebDriver driver;
 	private RegisterPageObject registerObject;
@@ -28,33 +26,29 @@ public class Login_01_RegisterAndLogin {
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get(homePage);
-
+		
 		loginObject = new LoginPageObject(driver);
+		loginObject.openURL(driver, homePage);
 		loginURL = loginObject.getPageByURL();
 	}
 
 	@Test
 	public void TC_01_Register_BankGuru() {
-		loginObject.clickToHereLink();
-		registerObject = new RegisterPageObject(driver);
-
+		registerObject = loginObject.clickToHereLink();
 		registerObject.enterEmail("van.tran" + getRandomNum() + "@gmail.com");
 		registerObject.clickSubmitButton();
 
 		userID = registerObject.getUserID();
 		password = registerObject.getPassword();
 		System.out.println(userID + " " + password);
-		registerObject.openPageByURL(loginURL);
-		// loginObject = new LoginPageObject(driver);
+		loginObject = registerObject.openLoginPage(loginURL);
 	}
 
 	@Test
 	public void TC_02_Login_BankGuru() {
 		loginObject.enterUserID(userID);
 		loginObject.enterPassword(password);
-		loginObject.clickLoginButton();
-		manageObject = new ManagePageObject(driver);
+		manageObject = loginObject.clickLoginButton();
 		Assert.assertTrue(manageObject.isWelcomeMsgDisplayed());
 	}
 

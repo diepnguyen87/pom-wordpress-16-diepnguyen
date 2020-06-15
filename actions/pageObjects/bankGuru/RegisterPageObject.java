@@ -25,16 +25,17 @@ public class RegisterPageObject extends AbstractPage {
 
 	public String getUserID() {
 		waitForElementVisible(driver, RegisterPageUI.USERID);
-		return getTextElement(driver, RegisterPageUI.USERID);
+		return getElementText(driver, RegisterPageUI.USERID);
 	}
 
 	public String getPassword() {
 		waitForElementVisible(driver, RegisterPageUI.PASSWORD);
-		return getTextElement(driver, RegisterPageUI.PASSWORD);
+		return getElementText(driver, RegisterPageUI.PASSWORD);
 	}
 
-	public void openPageByURL(String url) {
+	public LoginPageObject openLoginPage(String url) {
 		driver.get(url);
+		return new LoginPageObject(driver);
 	}
 
 }

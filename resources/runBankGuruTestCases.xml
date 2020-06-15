@@ -2,7 +2,8 @@
 <suite name="Suite" parallel="false">
   <test name="run on firefox">
     <classes>
-      <class name="com.bankguru.login.Login_01_RegisterAndLogin"/>
+<!--       <class name="com.bankguru.login.Login_01_PageObjectPattern"/> -->
+    	<class name="com.bankguru.login.Login_02_PageFactory"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

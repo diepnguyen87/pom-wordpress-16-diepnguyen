@@ -12,13 +12,18 @@ public class LoginPageObject extends AbstractPage {
 		this.driver = driver;
 	}
 
+	public void openLoginPage(String url) {
+		openURL(driver, url);
+	}
+	
 	public String getPageByURL() {
-		return driver.getCurrentUrl();
+		return getCurrentURL(driver);
 	}
 
-	public void clickToHereLink() {
+	public RegisterPageObject clickToHereLink() {
 		waitForElementClickable(driver, LoginPageUI.HERE_LINK);
 		clickToElement(driver, LoginPageUI.HERE_LINK);
+		return new RegisterPageObject(driver);
 	}
 
 	public void enterUserID(String userID) {
@@ -31,9 +36,10 @@ public class LoginPageObject extends AbstractPage {
 		sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
 	}
 
-	public void clickLoginButton() {
+	public ManagePageObject clickLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		return new ManagePageObject(driver);
 	}
 
 
