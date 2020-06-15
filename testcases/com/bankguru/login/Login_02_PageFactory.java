@@ -9,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import commons.PageFactoryManager;
+import commons.PageFactoryManager_BankGuru;
 import pageFactory.LoginPageObject;
 import pageFactory.ManagePageObject;
 import pageFactory.RegisterPageObject;
@@ -29,7 +29,7 @@ public class Login_02_PageFactory {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
-		loginObject = PageFactoryManager.getLoginPage(driver);
+		loginObject = PageFactoryManager_BankGuru.getLoginPage(driver);
 		loginObject.openURL(driver, homePage);
 		loginURL = loginObject.getPageByURL();
 	}

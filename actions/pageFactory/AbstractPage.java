@@ -289,7 +289,7 @@ public abstract class AbstractPage {
 		explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
-	private void sleepInSecond(long timeout) {
+	public void sleepInSecond(long timeout) {
 		try {
 			Thread.sleep(timeout * 1000);
 		} catch (InterruptedException e) {

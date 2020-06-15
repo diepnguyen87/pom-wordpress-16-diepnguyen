@@ -6,7 +6,7 @@ import pageFactory.LoginPageObject;
 import pageFactory.ManagePageObject;
 import pageFactory.RegisterPageObject;
 
-public class PageFactoryManager {
+public class PageFactoryManager_BankGuru {
 
 	public static LoginPageObject getLoginPage(WebDriver driver) {
 		return new LoginPageObject(driver);

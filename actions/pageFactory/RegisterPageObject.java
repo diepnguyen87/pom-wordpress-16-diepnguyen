@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import commons.PageFactoryManager;
+import commons.PageFactoryManager_BankGuru;
 
 public class RegisterPageObject extends AbstractPage{
 
@@ -51,7 +51,7 @@ public class RegisterPageObject extends AbstractPage{
 
 	public LoginPageObject openLoginPage(String url) {
 		openURL(driver, url);
-		return PageFactoryManager.getLoginPage(driver);
+		return PageFactoryManager_BankGuru.getLoginPage(driver);
 	}
 
 }

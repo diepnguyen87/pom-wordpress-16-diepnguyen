@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import commons.PageFactoryManager;
+import commons.PageFactoryManager_BankGuru;
 
 public class LoginPageObject extends AbstractPage {
 	
@@ -36,7 +36,7 @@ public class LoginPageObject extends AbstractPage {
 	public RegisterPageObject clickToHereLink() {
 		waitForElementClickable(driver, hereLink);
 		clickToElement(driver, hereLink);
-		return PageFactoryManager.getRegisterPage(driver);
+		return PageFactoryManager_BankGuru.getRegisterPage(driver);
 	}
 
 	public void enterUserID(String userID) {
@@ -52,7 +52,7 @@ public class LoginPageObject extends AbstractPage {
 	public ManagePageObject clickLoginButton() {
 		waitForElementClickable(driver, loginButton);
 		clickToElement(driver, loginButton);
-		return PageFactoryManager.getManagePage(driver);
+		return PageFactoryManager_BankGuru.getManagePage(driver);
 	}
 
 }
