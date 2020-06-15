@@ -9,9 +9,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import commons.PageFactoryManager_Wordpress;
-import pageObjects.wordpress.DashboardPageObject;
-import pageObjects.wordpress.LoginPageObject;
+import pageFactory.wordpress.DashboardPageObject;
+import pageFactory.wordpress.LoginPageObject;
+import pageFactory.wordpress.PageFactoryManager;
+
 
 public class Login_05_PageFatory {
 
@@ -28,7 +29,7 @@ public class Login_05_PageFatory {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("http://automationfc.wordpress.com/wp-admin");
 
-		loginOjbect = PageFactoryManager_Wordpress.getLoginPage(driver);
+		loginOjbect = PageFactoryManager.getLoginPage(driver);
 		loginURL = loginOjbect.getLoginPageURL();
 	}
 
