@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Wordpress" parallel="false">
-  <test name="Test">
-    <classes>
-      <class name="com.wordpress.login.Login_01_ValidateLoginForm"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+
+	<!-- <test name="Run on FIREFOX"> -->
+	<!-- <classes> -->
+	<!-- <parameter name="browser" value="firefox"/> -->
+	<!-- <parameter name="ip" value="192.168.1.10" /> -->
+	<!-- <class name="com.wordpress.login.Login_06_MultipleBrowser_Parallel"/> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+<!-- 	<test name="Run on CHROME"> -->
+<!-- 		<classes> -->
+<!-- 			<parameter name="browser" value="chrome" /> -->
+<!-- 			<parameter name="ip" value="192.168.1.11" /> -->
+<!-- 			<class name="com.wordpress.login.Login_06_MultipleBrowser_Parallel" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+	<test name="Run on EDGE">
+	<classes>
+	<parameter name="browser" value="edge"/>
+	<parameter name="ip" value="192.168.1.12" />
+	<class name="com.wordpress.login.Login_06_MultipleBrowser_Parallel"/>
+	</classes>
+	</test>
+
+
+	<!-- <test name="Run on IE"> -->
+	<!-- <classes> -->
+	<!-- <parameter name="browser" value="ie" /> -->
+	<!-- <parameter name="ip" value="192.168.1.13" /> -->
+	<!-- <class -->
+	<!-- name="com.wordpress.login.Login_06_MultipleBrowser_Parallel" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+</suite>

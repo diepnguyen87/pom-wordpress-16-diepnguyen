@@ -2,10 +2,6 @@ package pageFactory.bankGuru;
 
 import org.openqa.selenium.WebDriver;
 
-import pageFactory.bankGuru.LoginPageObject;
-import pageFactory.bankGuru.ManagePageObject;
-import pageFactory.bankGuru.RegisterPageObject;
-
 public class PageFactoryManager {
 
 	public static LoginPageObject getLoginPage(WebDriver driver) {

@@ -1,16 +1,18 @@
 package com.wordpress.login;
 
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import commons.AbstractTest;
+import commons.PageFactoryManager;
 import pageObjects.wordpress.DashboardPageObject;
 import pageObjects.wordpress.LoginPageObject;
 
-public class Login_04_PageObjectPattern {
+public class Login_06_MultipleBrowser_Parallel extends AbstractTest {
 
 	private WebDriver driver;
 	private LoginPageObject loginOjbect;
@@ -18,14 +20,11 @@ public class Login_04_PageObjectPattern {
 	private String loginURL;
 	private String actualErrorMsg;
 	
+	@Parameters("browser")
 	@BeforeClass
-	public void beforeClass() {
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://automationfc.wordpress.com/wp-admin");
-		
-		loginOjbect = new LoginPageObject(driver);
+	public void beforeClass(String browserName) {
+		driver = getBrowserDriver(browserName);	
+		loginOjbect = PageFactoryManager.getLoginPage(driver);
 		loginURL = loginOjbect.getLoginPageURL();
 	}
 
