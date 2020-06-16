@@ -17,5 +17,11 @@ public class DashboardPageObject extends AbstractPage {
 		waitForElementVisible(driver, DashboardPageUI.DASHBOARD_HEADER);
 		return isControlDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER);
 	}
+
+	@Override
+	public boolean isPageLoaded(String pageURL) {
+		String actualURL = getCurrentURL(driver);
+		return actualURL.endsWith(pageURL);
+	}
 }
 

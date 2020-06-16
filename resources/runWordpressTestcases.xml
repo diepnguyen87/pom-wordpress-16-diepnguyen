@@ -9,21 +9,29 @@
 	<!-- </classes> -->
 	<!-- </test> -->
 
-<!-- 	<test name="Run on CHROME"> -->
+	<test name="Run on CHROME">
+		<classes>
+			<parameter name="browser" value="chrome" />
+			<parameter name="ip" value="192.168.1.11" />
+			<class name="com.wordpress.login.Login_07_BrowserDriverFactory" />
+		</classes>
+	</test>
+
+<!-- 	<test name="Run on CHROME-HEADLESS"> -->
 <!-- 		<classes> -->
-<!-- 			<parameter name="browser" value="chrome" /> -->
+<!-- 			<parameter name="browser" value="chrome-headless" /> -->
 <!-- 			<parameter name="ip" value="192.168.1.11" /> -->
 <!-- 			<class name="com.wordpress.login.Login_06_MultipleBrowser_Parallel" /> -->
 <!-- 		</classes> -->
 <!-- 	</test> -->
 
-	<test name="Run on EDGE">
-	<classes>
-	<parameter name="browser" value="edge"/>
-	<parameter name="ip" value="192.168.1.12" />
-	<class name="com.wordpress.login.Login_06_MultipleBrowser_Parallel"/>
-	</classes>
-	</test>
+<!-- 	<test name="Run on EDGE"> -->
+<!-- 	<classes> -->
+<!-- 	<parameter name="browser" value="edge"/> -->
+<!-- 	<parameter name="ip" value="192.168.1.12" /> -->
+<!-- 	<class name="com.wordpress.login.Login_06_MultipleBrowser_Parallel"/> -->
+<!-- 	</classes> -->
+<!-- 	</test> -->
 
 
 	<!-- <test name="Run on IE"> -->

@@ -44,4 +44,10 @@ public class LoginPageObject extends AbstractPage {
 	public void OpenLoginPage(String loginURL) {
 		driver.get(loginURL);
 	}
+
+	@Override
+	public boolean isPageLoaded(String pageURL) {
+		String actualURL = getCurrentURL(driver);
+		return actualURL.endsWith(pageURL);
+	}
 }

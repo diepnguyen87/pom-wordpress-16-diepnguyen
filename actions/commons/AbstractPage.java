@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
 
+	public abstract boolean isPageLoaded(String pageURL);
+	
 	public void openURL(WebDriver driver, String url) {
 		driver.get(url);
 	}

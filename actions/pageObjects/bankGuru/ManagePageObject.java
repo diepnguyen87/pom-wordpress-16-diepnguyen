@@ -16,4 +16,10 @@ public class ManagePageObject extends AbstractPage {
 	public boolean isWelcomeMsgDisplayed() {
 		return isControlDisplayed(driver, ManagerPageUI.WELCOME_MSG);
 	}
+
+	@Override
+	public boolean isPageLoaded(String pageURL) {
+		String actualURL = getCurrentURL(driver);
+		return actualURL.endsWith(pageURL);
+	}
 }
