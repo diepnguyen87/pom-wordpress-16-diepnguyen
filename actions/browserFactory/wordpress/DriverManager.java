@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.GlobalConstants;
+import commons.wordpress.GlobalConstants;
 
 public abstract class DriverManager {
 

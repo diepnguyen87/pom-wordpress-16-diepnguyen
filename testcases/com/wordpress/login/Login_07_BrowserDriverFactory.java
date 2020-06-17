@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 
 import browserFactory.wordpress.BrowserDriverFactory;
 import browserFactory.wordpress.DriverManager;
-import commons.AbstractTest;
-import commons.PageFactoryManager;
+import commons.wordpress.AbstractTest;
 import pageObjects.wordpress.DashboardPageObject;
 import pageObjects.wordpress.LoginPageObject;
+import pageObjects.wordpress.PageFactoryManager;
 
 public class Login_07_BrowserDriverFactory extends AbstractTest {
 

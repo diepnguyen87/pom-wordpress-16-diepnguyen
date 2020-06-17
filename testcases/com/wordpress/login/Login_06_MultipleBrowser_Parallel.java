@@ -7,10 +7,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import commons.AbstractTest;
-import commons.PageFactoryManager;
+import commons.wordpress.AbstractTest;
 import pageObjects.wordpress.DashboardPageObject;
 import pageObjects.wordpress.LoginPageObject;
+import pageObjects.wordpress.PageFactoryManager;
 
 public class Login_06_MultipleBrowser_Parallel extends AbstractTest {
 

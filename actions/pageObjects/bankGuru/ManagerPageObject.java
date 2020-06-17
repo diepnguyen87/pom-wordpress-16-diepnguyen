@@ -2,19 +2,21 @@ package pageObjects.bankGuru;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.AbstractPage;
+import commons.bankguru.AbstractPage;
 import pageUI.bankGuru.ManagerPageUI;
 
-public class ManagePageObject extends AbstractPage {
+public class ManagerPageObject extends AbstractPage {
 
 	private WebDriver driver;
 
-	public ManagePageObject(WebDriver driver) {
+	public ManagerPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 	
 	public boolean isWelcomeMsgDisplayed() {
 		return isControlDisplayed(driver, ManagerPageUI.WELCOME_MSG);
 	}
+
+
 
 }

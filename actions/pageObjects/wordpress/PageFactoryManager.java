@@ -1,12 +1,6 @@
-package commons;
+package pageObjects.wordpress;
 
 import org.openqa.selenium.WebDriver;
-
-import pageObjects.wordpress.DashboardPageObject;
-import pageObjects.wordpress.LoginPageObject;
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
 
 
 public class PageFactoryManager {

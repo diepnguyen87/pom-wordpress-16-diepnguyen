@@ -1,8 +1,8 @@
 package pageObjects.wordpress;
 
 import org.openqa.selenium.WebDriver;
-import commons.AbstractPage;
-import commons.PageFactoryManager;
+
+import commons.wordpress.AbstractPage;
 import pageUI.wordpress.LoginPageUI;
 
 public class LoginPageObject extends AbstractPage {

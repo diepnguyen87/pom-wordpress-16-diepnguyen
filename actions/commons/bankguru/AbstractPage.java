@@ -1,4 +1,4 @@
-package commons;
+package commons.bankguru;
 
 import java.util.List;
 import java.util.Set;
@@ -12,41 +12,50 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
-import pageUI.wordpress.AbstractPageUI;
-import pageUI.wordpress.MediaPageUI;
-import pageUI.wordpress.PagesPageUI;
-import pageUI.wordpress.PostsPageUI;
+import pageObjects.bankGuru.PageFactoryManager;
+import pageObjects.bankGuru.AccountPageObject;
+import pageObjects.bankGuru.CustomerPageObject;
+import pageObjects.bankGuru.DepositPageObject;
+import pageObjects.bankGuru.ManagerPageObject;
+import pageObjects.bankGuru.WithdrawalPageObject;
 
 public abstract class AbstractPage {
 
-	public PostsPageObject clickToPostsMenu(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.POST_MENU);
-		clickToElement(driver, AbstractPageUI.POST_MENU);
-		return PageFactoryManager.getPostsPage(driver);
+	public WithdrawalPageObject openWithdrawalPage(WebDriver driver) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.WITHDRAWAL_LINK);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.WITHDRAWAL_LINK);
+		return PageFactoryManager.getWithdrawalPage(driver);
 	}
 
-	public MediaPageObject clickToMediaMenu(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.MEDIA_MENU);
-		clickToElement(driver, AbstractPageUI.MEDIA_MENU);
-		return PageFactoryManager.getMediaPage(driver);
+	public CustomerPageObject openCustomerPage(WebDriver driver) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.CUSTOMER_LINK);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.CUSTOMER_LINK);
+		return PageFactoryManager.getCustomerPage(driver);
 	}
 
-	public PagesPageObject clickToPagesMenu(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.PAGES_MENU);
-		clickToElement(driver, AbstractPageUI.PAGES_MENU);
-		return PageFactoryManager.getPagesPage(driver);
+	public ManagerPageObject openManagerPage(WebDriver driver) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.MANAGER_LINK);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.MANAGER_LINK);
+		return PageFactoryManager.getManagePage(driver);
 	}
 
-	
+	public DepositPageObject openDepositPage(WebDriver driver) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.DEPOSIT_LINK);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.DEPOSIT_LINK);
+		return PageFactoryManager.getDepositPage(driver);
+	}
+
+	public AccountPageObject openAccountPage(WebDriver driver) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.ACCOUNT_LINK);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.ACCOUNT_LINK);
+		return PageFactoryManager.getAccountPage(driver);
+	}
 
 	public boolean isPageLoaded(WebDriver driver, String pageURL) {
 		String actualURL = getCurrentURL(driver);
 		return actualURL.endsWith(pageURL);
 	}
-	
+
 	public void openURL(WebDriver driver, String url) {
 		driver.get(url);
 	}

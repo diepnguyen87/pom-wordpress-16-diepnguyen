@@ -2,7 +2,7 @@ package pageObjects.bankGuru;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.AbstractPage;
+import commons.wordpress.AbstractPage;
 import pageUI.bankGuru.RegisterPageUI;
 
 public class RegisterPageObject extends AbstractPage {

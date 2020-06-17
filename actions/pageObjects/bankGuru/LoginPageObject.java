@@ -1,7 +1,8 @@
 package pageObjects.bankGuru;
 
 import org.openqa.selenium.WebDriver;
-import commons.AbstractPage;
+
+import commons.wordpress.AbstractPage;
 import pageUI.bankGuru.LoginPageUI;
 
 public class LoginPageObject extends AbstractPage {
@@ -36,10 +37,10 @@ public class LoginPageObject extends AbstractPage {
 		sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
 	}
 
-	public ManagePageObject clickLoginButton() {
+	public ManagerPageObject clickLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
-		return new ManagePageObject(driver);
+		return new ManagerPageObject(driver);
 	}
 
 }

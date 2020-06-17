@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.bankGuru.LoginPageObject;
-import pageObjects.bankGuru.ManagePageObject;
+import pageObjects.bankGuru.ManagerPageObject;
 import pageObjects.bankGuru.RegisterPageObject;
 
 public class Login_01_PageObjectPattern {
@@ -19,7 +19,7 @@ public class Login_01_PageObjectPattern {
 	private WebDriver driver;
 	private RegisterPageObject registerObject;
 	private LoginPageObject loginObject;
-	private ManagePageObject manageObject;
+	private ManagerPageObject manageObject;
 	private String homePage = "http://demo.guru99.com/v4/index.php";
 	private String loginURL, userID, password;
 
