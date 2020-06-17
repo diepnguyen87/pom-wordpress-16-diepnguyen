@@ -12,9 +12,40 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.wordpress.MediaPageObject;
+import pageObjects.wordpress.PagesPageObject;
+import pageObjects.wordpress.PostsPageObject;
+import pageUI.wordpress.AbstractPageUI;
+import pageUI.wordpress.MediaPageUI;
+import pageUI.wordpress.PagesPageUI;
+import pageUI.wordpress.PostsPageUI;
+
 public abstract class AbstractPage {
 
-	public abstract boolean isPageLoaded(String pageURL);
+	public PostsPageObject clickToPostsMenu(WebDriver driver) {
+		waitForElementClickable(driver, AbstractPageUI.POST_MENU);
+		clickToElement(driver, AbstractPageUI.POST_MENU);
+		return PageFactoryManager.getPostsPage(driver);
+	}
+
+	public MediaPageObject clickToMediaMenu(WebDriver driver) {
+		waitForElementClickable(driver, AbstractPageUI.MEDIA_MENU);
+		clickToElement(driver, AbstractPageUI.MEDIA_MENU);
+		return PageFactoryManager.getMediaPage(driver);
+	}
+
+	public PagesPageObject clickToPagesMenu(WebDriver driver) {
+		waitForElementClickable(driver, AbstractPageUI.PAGES_MENU);
+		clickToElement(driver, AbstractPageUI.PAGES_MENU);
+		return PageFactoryManager.getPagesPage(driver);
+	}
+
+	
+
+	public boolean isPageLoaded(WebDriver driver, String pageURL) {
+		String actualURL = getCurrentURL(driver);
+		return actualURL.endsWith(pageURL);
+	}
 	
 	public void openURL(WebDriver driver, String url) {
 		driver.get(url);

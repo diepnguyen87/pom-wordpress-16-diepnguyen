@@ -3,6 +3,7 @@ package pageObjects.wordpress;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPage;
+import commons.PageFactoryManager;
 import pageUI.wordpress.DashboardPageUI;
 
 public class DashboardPageObject extends AbstractPage {
@@ -18,10 +19,11 @@ public class DashboardPageObject extends AbstractPage {
 		return isControlDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER);
 	}
 
-	@Override
-	public boolean isPageLoaded(String pageURL) {
-		String actualURL = getCurrentURL(driver);
-		return actualURL.endsWith(pageURL);
+	public PostsPageObject clickToPostsMenu() {
+		waitForElementClickable(driver, DashboardPageUI.POST_MENU);
+		clickToElement(driver, DashboardPageUI.POST_MENU);
+		return PageFactoryManager.getPostsPage(driver);
 	}
+
 }
 

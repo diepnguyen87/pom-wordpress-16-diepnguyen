@@ -38,10 +38,5 @@ public class RegisterPageObject extends AbstractPage {
 		return new LoginPageObject(driver);
 	}
 
-	@Override
-	public boolean isPageLoaded(String pageURL) {
-		String actualURL = getCurrentURL(driver);
-		return actualURL.endsWith(pageURL);
-	}
 
 }

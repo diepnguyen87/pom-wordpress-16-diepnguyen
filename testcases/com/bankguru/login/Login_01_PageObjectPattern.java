@@ -32,7 +32,6 @@ public class Login_01_PageObjectPattern {
 		
 		loginObject = new LoginPageObject(driver);
 		loginObject.openURL(driver, homePage);
-		Assert.assertTrue(loginObject.isPageLoaded("index.php"));
 		loginURL = loginObject.getPageByURL();
 		System.out.println(loginURL);
 	}
@@ -48,7 +47,6 @@ public class Login_01_PageObjectPattern {
 		password = registerObject.getPassword();
 		System.out.println(userID + " " + password);
 		loginObject = registerObject.openLoginPage(loginURL);
-		Assert.assertTrue(loginObject.isPageLoaded("index.php"));
 	}
 
 	@Test
@@ -56,7 +54,6 @@ public class Login_01_PageObjectPattern {
 		loginObject.enterUserID(userID);
 		loginObject.enterPassword(password);
 		manageObject = loginObject.clickLoginButton();
-		Assert.assertTrue(manageObject.isPageLoaded("Managerhomepage.php"));
 		Assert.assertTrue(manageObject.isWelcomeMsgDisplayed());
 	}
 

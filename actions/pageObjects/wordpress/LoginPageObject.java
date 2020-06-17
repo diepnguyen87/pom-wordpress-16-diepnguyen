@@ -2,6 +2,7 @@ package pageObjects.wordpress;
 
 import org.openqa.selenium.WebDriver;
 import commons.AbstractPage;
+import commons.PageFactoryManager;
 import pageUI.wordpress.LoginPageUI;
 
 public class LoginPageObject extends AbstractPage {
@@ -36,18 +37,14 @@ public class LoginPageObject extends AbstractPage {
 		sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);	
 	}
 
-	public void clickLoginButton() {
+	public DashboardPageObject clickLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		return PageFactoryManager.getDashboardPage(driver);
 	}
 
 	public void OpenLoginPage(String loginURL) {
 		driver.get(loginURL);
 	}
 
-	@Override
-	public boolean isPageLoaded(String pageURL) {
-		String actualURL = getCurrentURL(driver);
-		return actualURL.endsWith(pageURL);
-	}
 }
