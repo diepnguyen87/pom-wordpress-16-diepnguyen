@@ -2,6 +2,7 @@ package commons.wordpress;
 
 import java.util.List;
 import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -17,9 +18,6 @@ import pageObjects.wordpress.PageFactoryManager;
 import pageObjects.wordpress.PagesPageObject;
 import pageObjects.wordpress.PostsPageObject;
 import pageUI.wordpress.AbstractPageUI;
-import pageUI.wordpress.MediaPageUI;
-import pageUI.wordpress.PagesPageUI;
-import pageUI.wordpress.PostsPageUI;
 
 public abstract class AbstractPage {
 
@@ -45,7 +43,7 @@ public abstract class AbstractPage {
 		return String.format(locator, (Object[])value);
 	}
 	
-	public AbstractPage navigateToPage(WebDriver driver, String pageName ) {
+	public AbstractPage navigateToPage_LessMenu(WebDriver driver, String pageName ) {
 		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_PAGE, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE, pageName);
 		switch (pageName) {
@@ -62,7 +60,10 @@ public abstract class AbstractPage {
 		}
 	}
 
-	
+	public void navigateToPage_MoreMenu(WebDriver driver, String pageName ) {
+		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_PAGE, pageName);
+		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE, pageName);
+	}
 
 	public boolean isPageLoaded(WebDriver driver, String pageURL) {
 		String actualURL = getCurrentURL(driver);
@@ -184,7 +185,7 @@ public abstract class AbstractPage {
 	}
 
 	public void selectItemInCustomDropdownList(WebDriver driver, String parentXpath, String childXpath, String selectedText) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 
 		driver.findElement(By.xpath(parentXpath)).click();
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(childXpath)));
@@ -338,32 +339,32 @@ public abstract class AbstractPage {
 	}
 
 	public void waitForElementPresence(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
 	public void waitForElementVisible(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String xpathLocator, String... values) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(driver, castToObject(xpathLocator, values))));
 	}
 	
 	public void waitForElementClickable(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(driver, xpathLocator)));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
 	public void waitForAlertPresence(WebDriver driver) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -379,6 +380,4 @@ public abstract class AbstractPage {
 	private WebElement element;
 	private JavascriptExecutor jsExecutor;
 	private Actions action;
-	private long longSecondTimeOut = 30;
-	private long shortSecondTimeout = 5;
 }

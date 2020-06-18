@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.wordpress.AbstractTest;
+import commons.wordpress.GlobalConstants;
 import pageObjects.wordpress.DashboardPageObject;
 import pageObjects.wordpress.LoginPageObject;
 import pageObjects.wordpress.MediaPageObject;
@@ -34,29 +35,44 @@ public class Login_09_DynamicLocatorAndRestParameter extends AbstractTest {
 	
 	@Test
 	public void TC_01_ValidPassword() {
-		loginOjbect.enterEmail("automationeditor");
+		loginOjbect.enterEmail(GlobalConstants.USERNAME);
 		loginOjbect.clickContinueButton();
-		loginOjbect.enterPassword("automationfc");
+		loginOjbect.enterPassword(GlobalConstants.PASSWORD);
 		dashboardObject = loginOjbect.clickLoginButton();
 		Assert.assertTrue(dashboardObject.isDashboardPageDisplay());
 	}
 	
 	@Test
-	public void TC_02_NavigateToPage() {
+	public void TC_02_NavigateToPage_LessMenu() {
 		//Dashboard->Posts
-		postObject = (PostsPageObject) dashboardObject.navigateToPage(driver, "post");
+		postObject = (PostsPageObject) dashboardObject.navigateToPage_LessMenu(driver, "post");
 		
 		//Post->Pages
-		pageObject = (PagesPageObject) postObject.navigateToPage(driver, "page");
+		pageObject = (PagesPageObject) postObject.navigateToPage_LessMenu(driver, "page");
 		
 		//Page->Media
-		mediaObject = (MediaPageObject) pageObject.navigateToPage(driver, "media");
+		mediaObject = (MediaPageObject) pageObject.navigateToPage_LessMenu(driver, "media");
 		
 		//Media->Post
-		postObject = (PostsPageObject) mediaObject.navigateToPage(driver, "post");
+		postObject = (PostsPageObject) mediaObject.navigateToPage_LessMenu(driver, "post");
 		
 		//Post->Media
-		mediaObject = (MediaPageObject) postObject.navigateToPage(driver, "media");
+		mediaObject = (MediaPageObject) postObject.navigateToPage_LessMenu(driver, "media");
+		
+		//Media->Dashboard
+		dashboardObject = (DashboardPageObject) mediaObject.navigateToPage_LessMenu(driver, "dashboard");		
+	}
+	
+	@Test
+	public void TC_03_NavigateToPage_MoreMenu() {
+		dashboardObject.navigateToPage_MoreMenu(driver, "post");
+		postObject = PageFactoryManager.getPostsPage(driver);
+		
+		postObject.navigateToPage_MoreMenu(driver, "media");
+		mediaObject = PageFactoryManager.getMediaPage(driver);
+		
+		mediaObject.navigateToPage_MoreMenu(driver, "page");
+		pageObject = PageFactoryManager.getPagesPage(driver);
 		
 	}
 
