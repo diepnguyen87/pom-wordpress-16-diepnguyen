@@ -38,8 +38,8 @@ public abstract class AbstractTest {
 			System.out.println("Please run only 3 browsers: chrome, firefox and edge");
 		}
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://automationfc.wordpress.com/wp-admin");
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+		driver.get(GlobalConstants.WORDPRESS_URL);
 		return driver;
 	}
 
@@ -56,8 +56,8 @@ public abstract class AbstractTest {
 			System.out.println("Please run only 3 browsers: chrome, firefox and edge");
 		}
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://automationfc.wordpress.com/wp-admin");
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+		driver.get(GlobalConstants.WORDPRESS_URL);
 		return driver;
 	}
 

@@ -2,6 +2,7 @@ package commons.bankguru;
 
 import java.util.List;
 import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,44 +14,34 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.bankGuru.PageFactoryManager;
-import pageObjects.bankGuru.AccountPageObject;
-import pageObjects.bankGuru.CustomerPageObject;
-import pageObjects.bankGuru.DepositPageObject;
-import pageObjects.bankGuru.ManagerPageObject;
-import pageObjects.bankGuru.WithdrawalPageObject;
 
 public abstract class AbstractPage {
 
-	public WithdrawalPageObject openWithdrawalPage(WebDriver driver) {
-		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.WITHDRAWAL_LINK);
-		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.WITHDRAWAL_LINK);
-		return PageFactoryManager.getWithdrawalPage(driver);
+	public AbstractPage openDynamicPage_LessMenu(WebDriver driver, String pageName) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.DYNAMIC_LINK);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.DYNAMIC_LINK);
+		switch (pageName) {
+		case "addAccount":
+			return PageFactoryManager.getAccountPage(driver);
+		case "addcustomerpage":
+			return PageFactoryManager.getCustomerPage(driver);
+		case "DepositInput":
+			return PageFactoryManager.getDepositPage(driver);
+		case "WithdrawalInput":
+			return PageFactoryManager.getWithdrawalPage(driver);
+		default:
+			return PageFactoryManager.getManagerPage(driver);
+		}
 	}
-
-	public CustomerPageObject openCustomerPage(WebDriver driver) {
-		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.CUSTOMER_LINK);
-		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.CUSTOMER_LINK);
-		return PageFactoryManager.getCustomerPage(driver);
+	
+	public void openDynamicPage_MoreMenu(WebDriver driver, String pageName) {
+		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.DYNAMIC_LINK, pageName);
+		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.DYNAMIC_LINK, pageName);
 	}
-
-	public ManagerPageObject openManagerPage(WebDriver driver) {
-		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.MANAGER_LINK);
-		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.MANAGER_LINK);
-		return PageFactoryManager.getManagePage(driver);
+	
+	private String castToObject(String xpathLocator, String... values) {
+		return String.format(xpathLocator, (Object[])values);
 	}
-
-	public DepositPageObject openDepositPage(WebDriver driver) {
-		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.DEPOSIT_LINK);
-		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.DEPOSIT_LINK);
-		return PageFactoryManager.getDepositPage(driver);
-	}
-
-	public AccountPageObject openAccountPage(WebDriver driver) {
-		waitForElementClickable(driver, pageUI.bankGuru.AbstractPageUI.ACCOUNT_LINK);
-		clickToElement(driver, pageUI.bankGuru.AbstractPageUI.ACCOUNT_LINK);
-		return PageFactoryManager.getAccountPage(driver);
-	}
-
 	public boolean isPageLoaded(WebDriver driver, String pageURL) {
 		String actualURL = getCurrentURL(driver);
 		return actualURL.endsWith(pageURL);
@@ -143,8 +134,8 @@ public abstract class AbstractPage {
 		return driver.findElements(byXpath(driver, xpathLocator));
 	}
 
-	public void clickToElement(WebDriver driver, String xpathLocator) {
-		findElement(driver, xpathLocator).click();
+	public void clickToElement(WebDriver driver, String xpathLocator, String... values) {
+		findElement(driver, castToObject(xpathLocator, values)).click();
 	}
 
 	public void sendKeyToElement(WebDriver driver, String xpathLocator, String value) {
@@ -166,7 +157,7 @@ public abstract class AbstractPage {
 	}
 
 	public void selectItemInCustomDropdownList(WebDriver driver, String parentXpath, String childXpath, String selectedText) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 
 		driver.findElement(By.xpath(parentXpath)).click();
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(childXpath)));
@@ -316,27 +307,27 @@ public abstract class AbstractPage {
 	}
 
 	public void waitForElementPresence(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
 	public void waitForElementVisible(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
-	public void waitForElementClickable(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(driver, xpathLocator)));
+	public void waitForElementClickable(WebDriver driver, String xpathLocator, String... values) {
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(driver, castToObject(xpathLocator, values))));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String xpathLocator) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(driver, xpathLocator)));
 	}
 
 	public void waitForAlertPresence(WebDriver driver) {
-		explicitWait = new WebDriverWait(driver, longSecondTimeOut);
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -352,6 +343,4 @@ public abstract class AbstractPage {
 	private WebElement element;
 	private JavascriptExecutor jsExecutor;
 	private Actions action;
-	private long longSecondTimeOut = 30;
-	private long shortSecondTimeout = 5;
 }

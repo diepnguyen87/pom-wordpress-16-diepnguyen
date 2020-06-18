@@ -13,7 +13,7 @@ public class PageFactoryManager {
 		return new RegisterPageObject(driver);
 	}
 	
-	public static ManagerPageObject getManagePage(WebDriver driver) {
+	public static ManagerPageObject getManagerPage(WebDriver driver) {
 		return new ManagerPageObject(driver);
 	}
 	

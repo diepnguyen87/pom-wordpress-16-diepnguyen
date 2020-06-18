@@ -1,9 +1,8 @@
 package com.bankguru.login;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -62,24 +61,47 @@ public class Login_03_WebDriverLifeCycle extends AbstractTest {
 	}
 	
 	@Test
-	public void TC_03_NavigateToPage() {
+	public void TC_03_NavigateToPage_LessMenu() {
 		//Manager Page -> New Customer
-		customerObject = managerObject.openCustomerPage(driver);
+		customerObject = (CustomerPageObject) managerObject.openDynamicPage_LessMenu(driver, "addcustomerpage");
 		
 		//New Customer -> New Account
-		accountOjbect = customerObject.openAccountPage(driver);
+		accountOjbect = (AccountPageObject) customerObject.openDynamicPage_LessMenu(driver, "addAccount");
 		
 		//New Account -> Widthdrawal
-		withdrawObject = accountOjbect.openWithdrawalPage(driver);
+		withdrawObject = (WithdrawalPageObject) accountOjbect.openDynamicPage_LessMenu(driver, "WithdrawalInput");
 		
 		//Withdrawal -> Manager Page
-		managerObject = withdrawObject.openManagerPage(driver);
+		managerObject = (ManagerPageObject) withdrawObject.openDynamicPage_LessMenu(driver, "Managerhomepage");
 		
 		//Manager Page -> Deposit Page
-		depositObject = managerObject.openDepositPage(driver);
+		depositObject = (DepositPageObject) managerObject.openDynamicPage_LessMenu(driver, "DepositInput");
 		
 		//Deposit -> New Customer
-		customerObject = depositObject.openCustomerPage(driver);
+		customerObject = (CustomerPageObject) depositObject.openDynamicPage_LessMenu(driver, "addcustomerpage");
+	}
+
+	@Test
+	public void TC_04_NavigateToPage_MoreMenu() {
+		//New Customer -> New Account
+		customerObject.openDynamicPage_MoreMenu(driver, "addAccount");
+		accountOjbect = PageFactoryManager.getAccountPage(driver);
+		
+		//New Account -> Widthdrawal
+		accountOjbect.openDynamicPage_MoreMenu(driver, "WithdrawalInput");
+		withdrawObject = PageFactoryManager.getWithdrawalPage(driver);
+		
+		//Withdrawal -> Manager Page
+		withdrawObject.openDynamicPage_MoreMenu(driver, "Managerhomepage");
+		managerObject = PageFactoryManager.getManagerPage(driver);
+		
+		//Manager Page -> Deposit Page
+		managerObject.openDynamicPage_MoreMenu(driver, "DepositInput");
+		depositObject = PageFactoryManager.getDepositPage(driver);
+		
+		//Deposit -> New Customer
+		depositObject.openDynamicPage_MoreMenu(driver, "addcustomerpage");
+		customerObject = PageFactoryManager.getCustomerPage(driver);
 	}
 
 	private int getRandomNum() {

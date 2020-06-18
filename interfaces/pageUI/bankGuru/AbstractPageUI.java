@@ -8,5 +8,6 @@ public class AbstractPageUI {
 	public static String DEPOSIT_LINK = "//ul[@class='menusubnav']//a[@href='DepositInput.php']";
 	public static String WITHDRAWAL_LINK = "//ul[@class='menusubnav']//a[@href='WithdrawalInput.php']";
 	
+	public static String DYNAMIC_LINK = "//ul[@class='menusubnav']//a[@href='%s.php']";
 	
 }
