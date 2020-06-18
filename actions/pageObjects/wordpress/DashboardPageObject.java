@@ -15,7 +15,7 @@ public class DashboardPageObject extends AbstractPage {
 
 	public boolean isDashboardPageDisplay() {
 		waitForElementVisible(driver, DashboardPageUI.DASHBOARD_HEADER);
-		return isControlDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER);
+		return isElementDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER);
 	}
 
 }

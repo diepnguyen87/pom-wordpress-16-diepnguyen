@@ -14,7 +14,7 @@ public class ManagerPageObject extends AbstractPage {
 	}
 	
 	public boolean isWelcomeMsgDisplayed() {
-		return isControlDisplayed(driver, ManagerPageUI.WELCOME_MSG);
+		return isElementDisplayed(driver, ManagerPageUI.WELCOME_MSG);
 	}
 
 
