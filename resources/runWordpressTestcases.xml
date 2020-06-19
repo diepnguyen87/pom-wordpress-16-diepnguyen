@@ -6,7 +6,7 @@
 			<parameter name="browser" value="firefox" />
 			<parameter name="ip" value="192.168.1.10" />
 <!-- 			<class name="com.wordpress.login.Login_08_WebDriverLifeCycle" /> -->
-			<class name="com.wordpress.login.Login_09_DynamicLocatorAndRestParameter" />
+			<class name="com.wordpress.login.Login_10_Upload_Multiple_File" />
 		</classes>
 	</test>
 

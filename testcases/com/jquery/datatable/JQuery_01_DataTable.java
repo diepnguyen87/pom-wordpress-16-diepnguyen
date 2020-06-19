@@ -64,7 +64,6 @@ public class JQuery_01_DataTable extends AbstractTest {
 		tableObject.inputToDynamicTextboxAtRowNumber("Company", "3", "KMS Technology");
 		tableObject.inputToDynamicTextboxAtRowNumber("Contact Person", "2", "Viet Hung");
 		tableObject.inputToDynamicTextboxAtRowNumber("Order Placed", "1", "28 Truong Son");
-		
 	}
 	
 	@AfterClass

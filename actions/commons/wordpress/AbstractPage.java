@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import commons.jQuery.GlobalConstants;
+import commons.wordpress.GlobalConstants;
 import pageObjects.wordpress.MediaPageObject;
 import pageObjects.wordpress.PageFactoryManager;
 import pageObjects.wordpress.PagesPageObject;
@@ -206,8 +206,12 @@ public abstract class AbstractPage {
 		}
 	}
 
-	public void getAttributeValue(WebDriver driver, String xpathLocator, String attributeName) {
-		findElement(driver, xpathLocator).getAttribute(attributeName);
+	public String getAttributeValue(WebDriver driver, String xpathLocator, String attributeName) {
+		return findElement(driver, xpathLocator).getAttribute(attributeName);
+	}
+	
+	public String getAttributeValue(WebDriver driver, String xpathLocator, String attributeName, String... xpathValues) {
+		return findElement(driver, castToObject(xpathLocator, xpathValues)).getAttribute(attributeName);
 	}
 
 	public String getElementText(WebDriver driver, String xpathLocator) {
@@ -344,17 +348,22 @@ public abstract class AbstractPage {
 		element = driver.findElement(By.xpath(locator));
 		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", element);
 	}
+	
+	public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+		String fullFileName = "";
+		for(String file : fileNames) {
+			fullFileName += GlobalConstants.UPLOAD_FOLDER + file + "\n";		
+		}
+		fullFileName = fullFileName.trim();
+		sendKeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, fullFileName);
+	}
 
 	public boolean isImageLoaded(WebDriver driver, String xpathLocator) {
 		jsExecutor = (JavascriptExecutor) driver;
 		element = findElement(driver, xpathLocator);
-		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete &&" + "typeOf arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0", element);
-		if (status) {
-			return true;
-		}
-		return false;
+		return (boolean) jsExecutor.executeScript("return arguments[0].complete &&" + "typeOf arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0", element);
 	}
-
+	
 	public void waitForElementPresence(WebDriver driver, String xpathLocator) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(byXpath(driver, xpathLocator)));
@@ -383,6 +392,12 @@ public abstract class AbstractPage {
 	public void waitForElementInvisible(WebDriver driver, String xpathLocator) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(driver, xpathLocator)));
+	}
+
+	public void waitForElementsInvisible(WebDriver driver, String xpathLocator) {
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		List<WebElement> elements = findElements(driver, xpathLocator);
+		explicitWait.until(ExpectedConditions.invisibilityOfAllElements(elements));
 	}
 
 	public void waitForAlertPresence(WebDriver driver) {

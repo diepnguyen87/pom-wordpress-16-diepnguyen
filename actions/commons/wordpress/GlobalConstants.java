@@ -3,6 +3,7 @@ package commons.wordpress;
 public class GlobalConstants {
 
 	public static String PROJECT_FOLDER = System.getProperty("user.dir");
+	public static String UPLOAD_FOLDER = PROJECT_FOLDER + "\\uploadFiles\\";
 	public static String WORDPRESS_URL = "http://automationfc.wordpress.com/wp-admin";
 	public static String USERNAME = "automationeditor";
 	public static String PASSWORD = "automationfc";
