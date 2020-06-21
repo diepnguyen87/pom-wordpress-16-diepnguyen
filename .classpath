@@ -5,7 +5,7 @@
 	<classpathentry kind="src" path="actions"/>
 	<classpathentry kind="src" path="interfaces"/>
 	<classpathentry kind="src" path="resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.;launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="webDriverManager/commons-codec-1.13.jar"/>
 	<classpathentry kind="lib" path="webDriverManager/commons-compress-1.18.jar"/>
 	<classpathentry kind="lib" path="webDriverManager/commons-io-2.6.jar"/>
