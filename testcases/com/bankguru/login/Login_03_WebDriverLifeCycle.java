@@ -104,10 +104,6 @@ public class Login_03_WebDriverLifeCycle extends AbstractTest {
 		customerObject = PageFactoryManager.getCustomerPage(driver);
 	}
 
-	private int getRandomNum() {
-		Random random = new Random();
-		return random.nextInt(9999);
-	}
 
 	@AfterClass
 	public void afterClass() {

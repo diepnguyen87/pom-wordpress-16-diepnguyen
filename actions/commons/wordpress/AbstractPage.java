@@ -1,11 +1,14 @@
 package commons.wordpress;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,7 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import commons.wordpress.GlobalConstants;
 import pageObjects.wordpress.MediaPageObject;
 import pageObjects.wordpress.PageFactoryManager;
 import pageObjects.wordpress.PagesPageObject;
@@ -246,9 +248,39 @@ public abstract class AbstractPage {
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String xpathLocator) {
-		return findElement(driver, xpathLocator).isDisplayed();
+		try {
+			return findElement(driver, xpathLocator).isDisplayed();	
+		}catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+	
+	public void overideGlobalTimeout(WebDriver driver, long timeout) {
+		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.MILLISECONDS);
+	}
+	
+	public boolean isElementUndisplayed(WebDriver driver, String xpathLocator) {
+		overideGlobalTimeout(driver, 100);
+		elements = findElements(driver, xpathLocator);
+		if(elements.size() == 0) {
+			overideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			return true;
+		}else if(elements.size() > 0 && !isElementDisplayed(driver, xpathLocator)) {
+			System.out.println("visible in dom but not display");
+			overideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			return true;
+		}else {
+			System.out.println("visble in dom and display");
+			overideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			return false;
+		}
+		
 	}
 
+	public Date getCurrentDateTime() {
+		Date currentDate = new Date();
+		return currentDate;
+	}
 	public boolean isElementSelected(WebDriver driver, String xpathLocator) {
 		return findElement(driver, xpathLocator).isSelected();
 	}
@@ -415,6 +447,7 @@ public abstract class AbstractPage {
 
 	private WebDriverWait explicitWait;
 	private WebElement element;
+	private List<WebElement> elements;
 	private JavascriptExecutor jsExecutor;
 	private Actions action;
 }

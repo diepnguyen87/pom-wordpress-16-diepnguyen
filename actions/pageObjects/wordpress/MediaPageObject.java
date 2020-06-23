@@ -33,7 +33,7 @@ public class MediaPageObject extends AbstractPage {
 			System.out.println(element.getAttribute("src"));
 			loadedImgSources.add(element.getAttribute("src"));
 			++i;
-			if(i==3)break;
+			if(i==imgList.size())break;
 		}
 		String imageSources = loadedImgSources.toString();
 		for(String item : imgList) {
