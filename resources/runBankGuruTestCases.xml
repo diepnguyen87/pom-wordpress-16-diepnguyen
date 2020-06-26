@@ -5,7 +5,12 @@
 		<classes>
 <!-- 			<class name="com.bankguru.login.Login_01_PageObjectPattern" /> -->
 <!-- 			<class name="com.bankguru.login.Login_02_PageFactory" /> -->
-			<class name="com.bankguru.login.Login_03_WebDriverLifeCycle" />
+<!-- 			<class name="com.bankguru.login.Login_03_WebDriverLifeCycle" /> -->
+			
+<!-- 			<class name="com.bankguru.commons.Register" /> -->
+			<class name="com.bankguru.user.AddUser" />
+			<class name="com.bankguru.user.EditUser" />
+			<class name="com.bankguru.user.DeleteUser" />
 		</classes>
 	</test>
 </suite>
