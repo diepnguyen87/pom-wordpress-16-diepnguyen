@@ -40,7 +40,7 @@ public class Login_11_Element_Undisplayed extends AbstractTest {
 	
 	@Test
 	public void TC_02_Element_Undisplayed_Without_Dom() {
-		verifyTrue(dashboardObject.isPlansMenuUndisplayed());
+		verifyFalse(dashboardObject.isPlansMenuUndisplayed());
 		dashboardObject.clickPostsMenu();
 		
 		//sai

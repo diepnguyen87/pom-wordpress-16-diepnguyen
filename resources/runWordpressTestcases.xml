@@ -3,6 +3,17 @@
 
 	<listeners>
 		<listener class-name="commons.wordpress.MethodListener" />
+<!-- 		Extent Report V2 -->
+<!-- 		<listener class-name="reportConfig.ExtentReportListener" /> -->
+
+<!-- 		Extent Report V3 -->
+<!-- 		<listener class-name="reportConfig.ExtentTestListener" /> -->
+		
+<!-- 			Extent Report V4 --> -->
+		<listener class-name="reportConfig.ExtentListener" />
+		
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
 	</listeners>
 	<!-- <test name="Run on FIREFOX"> -->
 	<!-- <classes> -->
@@ -17,7 +28,7 @@
 		<classes>
 			<parameter name="browser" value="chrome" />
 			<parameter name="ip" value="192.168.1.11" />
-			<class name="com.wordpress.login.Login_11_Element_Undisplayed" />
+			<class name="com.wordpress.login.Login_13_Log_Report_HTML" />
 		</classes>
 	</test>
 

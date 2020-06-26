@@ -1,0 +1,13 @@
+2020-06-26 13:14:45,453 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Pre-condition - Open browser
+2020-06-26 13:14:56,343 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Pre-condition - STEP 01: open login page
+2020-06-26 13:14:56,350 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Pre-condition - STEP 02: input to 'Email' textbox
+2020-06-26 13:14:56,669 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Pre-condition - STEP 03: click 'Continue' button
+2020-06-26 13:14:56,826 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Pre-condition - STEP 04: input to 'Password' textbox
+2020-06-26 13:14:57,614 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Pre-condition - STEP 05: click 'Login' button
+2020-06-26 13:14:57,850 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Element_Undisplayed_In_Dom - STEP 01: click to 'Screen Options' button
+2020-06-26 13:15:03,959 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Element_Undisplayed_In_Dom - STEP 02: verify 'Activity' checkbox display
+2020-06-26 13:15:04,022 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Element_Undisplayed_In_Dom - STEP 03: click to 'Screen Options' button
+2020-06-26 13:15:07,127 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Element_Undisplayed_In_Dom - STEP 04: verify 'Activity' checkbox is NOT displayed
+2020-06-26 13:15:07,199 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Element_Undisplayed_Without_Dom - STEP 01: verify 'Plans' menu is NOT displayed
+2020-06-26 13:15:07,379 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Element_Undisplayed_Without_Dom - STEP 02: click to 'POST' menu
+2020-06-26 13:15:08,644 INFO  com.wordpress.login.Login_13_Log_Report_HTML - Post-condition - close browser
